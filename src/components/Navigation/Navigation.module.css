@@ -1,0 +1,16 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: cornflowerblue;
+  transition: all 150ms ease-in;
+}
+
+.link:hover {
+  color: darkblue;
+}
+
+.activeLink {
+  color: darkblue;
+}

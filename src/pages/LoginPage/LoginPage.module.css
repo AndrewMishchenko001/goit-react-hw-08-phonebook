@@ -1,0 +1,49 @@
+.loginBox {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "Yusei Magic", sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px black, 0 0 1em cornflowerblue;
+}
+
+.gifBox {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+.form {
+  margin: 75px;
+  width: 310px;
+  background-color: rgb(210, 220, 228);
+  padding: 20px 5px 10px 5px;
+
+  border-radius: 5px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.labelText {
+  font-family: "Roboto", sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px black, 0 0 1em cornflowerblue;
+}
+
+.loginBtnBox {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
