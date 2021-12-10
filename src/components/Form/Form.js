@@ -63,6 +63,7 @@ function Form() {
           value={name}
           onChange={handleChange}
           autoComplete="off"
+          required
         />
       </label>
       <label className={s.label}>
@@ -75,6 +76,7 @@ function Form() {
           value={number}
           onChange={handleChange}
           autoComplete="off"
+          required
         />
       </label>
       <button className={s.button} type="submit">
