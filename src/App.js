@@ -1,29 +1,28 @@
-import { lazy, Suspense, useEffect } from 'react';
-import { Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { lazy, Suspense, useEffect } from "react";
+import { Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
-import { authOperations } from 'redux/auth';
-import Loader from './components/Loader';
-import Section from './components/Section';
-import AppBar from './components/AppBar';
+import { authOperations } from "redux/auth";
+import Loader from "./components/Loader";
+import Section from "./components/Section";
+import AppBar from "./components/AppBar";
+import { getContacts } from "redux/contacts/contacts-action";
+import { getContactsOperation } from "redux/contacts/contacts-operations";
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const ContactsPage = lazy(() =>
-  import('./pages/ContactsPage'),
-);
-const RegisterPage = lazy(() =>
-  import('./pages/RegisterPage'),
-);
+const HomePage = lazy(() => import("./pages/HomePage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const ContactsPage = lazy(() => import("./pages/ContactsPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
 export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
+    dispatch(getContactsOperation());
   }, [dispatch]);
   return (
     <Section>
@@ -34,26 +33,15 @@ export default function App() {
             <HomePage />
           </PublicRoute>
 
-          <PublicRoute
-            path="/register"
-            restricted
-            redirectTo="/contacts"
-          >
+          <PublicRoute path="/register" restricted redirectTo="/contacts">
             <RegisterPage />
           </PublicRoute>
 
-          <PublicRoute
-            path="/login"
-            restricted
-            redirectTo="/contacts"
-          >
+          <PublicRoute path="/login" restricted redirectTo="/contacts">
             <LoginPage />
           </PublicRoute>
 
-          <PrivateRoute
-            path="/contacts"
-            redirectTo="/login"
-          >
+          <PrivateRoute path="/contacts" redirectTo="/login">
             <ContactsPage />
           </PrivateRoute>
         </Switch>

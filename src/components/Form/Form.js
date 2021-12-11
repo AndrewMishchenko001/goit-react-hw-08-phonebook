@@ -1,33 +1,26 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addContacts } from "../../redux/contacts/contacts-action";
+import { addContactOperation } from "redux/contacts/contacts-operations";
+// import { addContacts } from "../../redux/contacts/contacts-action";
 import { getItems } from "../../redux/contacts/contacts-selector";
 import s from "./Form.module.css";
 
 function Form() {
   const dispatch = useDispatch();
   const contacts = useSelector(getItems);
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [person, setPerson] = useState({
+    name: "",
+    number: "",
+  });
 
   const handleChange = (e) => {
-    const { value, name } = e.currentTarget;
-
-    switch (name) {
-      case "name":
-        setName(value);
-        break;
-      case "number":
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+    const { name, value } = e.target;
+    setPerson((prev) => ({ ...prev, [name]: value }));
   };
-  const resetInput = () => {
-    setName("");
-    setNumber("");
-  };
+  // const resetInput = () => {
+  //   setName("");
+  //   setNumber("");
+  // };
 
   const checkName = (name) => {
     return contacts.find(
@@ -41,16 +34,19 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, number } = person;
     if (checkName(name)) {
       alert(`${name} is already in your phonebook`);
     } else if (checkNumber(number)) {
       alert(`${number} is already in your phonebook`);
     } else {
-      dispatch(addContacts(name, number));
+      dispatch(addContactOperation(person));
+      // dispatch(addContacts(person));
     }
-    resetInput();
+    // resetInput();
+    setPerson({ name: "", number: "" });
   };
-
+  const { name, number } = person;
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <label className={s.label}>
