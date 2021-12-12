@@ -18,7 +18,9 @@ export const getContacts = createAction(GET_CONTACTS, (contacts) => ({
   payload: [...contacts],
 }));
 
-export const deleteContacts = createAction(DELETE_CONTACTS);
+export const deleteContacts = createAction(DELETE_CONTACTS, (id) => ({
+  payload: id,
+}));
 export const updateFilter = createAction(UPDATE_FILTER);
 
 // export const addContacts = (id, name, number) => ({

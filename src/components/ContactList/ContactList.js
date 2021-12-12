@@ -1,9 +1,10 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import s from './ContactList.module.css';
-import { FaRegTimesCircle } from 'react-icons/fa';
-import { deleteContacts } from '../../redux/contacts/contacts-action';
-import { filteredContacts } from '../../redux/contacts/contacts-selector';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import s from "./ContactList.module.css";
+import { FaRegTimesCircle } from "react-icons/fa";
+// import { deleteContacts } from '../../redux/contacts/contacts-action';
+import { filteredContacts } from "../../redux/contacts/contacts-selector";
+import { deleteContactsOperation } from "redux/contacts/contacts-operations";
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const ContactList = () => {
             <button
               className={s.btn}
               type="button"
-              onClick={() => dispatch(deleteContacts(id))}
+              onClick={() => dispatch(deleteContactsOperation(id))}
             >
               <FaRegTimesCircle className={s.icon} />
             </button>
